@@ -12,25 +12,27 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+  int selectedIndex = 0;
+
+  void navigateBottomBar(int index) {
+  
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
+  final List<Widget> pages = [ShopPage(), CartPage()];
   @override
   Widget build(BuildContext context) {
-    int selectedIndex = 0;
-
-    void navigateBottomBar(int index) {
-      print(index);
-      setState(() {
-        selectedIndex = index;
-      });
-    }
-
-    final List<Widget> pages = [ShopPage(), CartPage()];
+    
 
     return Scaffold(
       backgroundColor: backgroundColor,
       bottomNavigationBar: BottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),
-      body: Center(child: Text('$selectedIndex')),
+      body: pages[selectedIndex],
     );
   }
 }
