@@ -16,6 +16,9 @@ class _ShopPageState extends State<ShopPage> {
 
   void addToCart(Coffee coffee){
     Provider.of<CoffeeShop>(context, listen: false).addItemToCart(coffee);
+    showDialog(context: context, builder: (context) => AlertDialog(
+      title: Text("Successfully added to cart."),
+    ));
 
   }
 
@@ -37,6 +40,7 @@ class _ShopPageState extends State<ShopPage> {
                 Coffee eachCoffee = value.coffeeShop[index];
 
                 return  CoffeeTile(coffee: eachCoffee,
+                icon: Icon(Icons.add),
                 onPressed:() {
                   addToCart(eachCoffee);
                 } ,);
